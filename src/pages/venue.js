@@ -11,7 +11,6 @@ const Container = styled.div({
 });
 
 export default function Venue({ data, ...rest }) {
-  const { speakers } = data;
   return (
     <Layout {...rest}>
       <Container>

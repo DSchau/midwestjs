@@ -14,9 +14,11 @@ const Subheader = styled.div({
 
 const EventMessage = styled.p({
   color: 'black',
+  fontSize: 14,
   margin: 0,
   padding: 0,
   textAlign: 'center',
+  textTransform: 'uppercase',
 });
 
 const Image = styled(GatsbyImage)({

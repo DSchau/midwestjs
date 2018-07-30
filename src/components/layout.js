@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'react-emotion';
+import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
 import 'sanitize.css';
@@ -41,3 +42,16 @@ export default function Layout({ children, location }) {
     />
   );
 }
+
+Layout.propTypes = {
+  children: PropTypes.node,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+  meta: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      content: PropTypes.string,
+    })
+  ),
+};

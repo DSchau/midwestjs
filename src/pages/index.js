@@ -5,27 +5,31 @@ import GatsbyImage from 'gatsby-image';
 
 import Layout from '../components/layout';
 
+import { DIMENSIONS } from '../util/dimensions';
+
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
 });
 
 const Hero = styled.div({
-  position: 'relative'
+  position: 'relative',
 });
 
-const Image = styled(GatsbyImage)({
-});
+const Image = styled(GatsbyImage)({});
 
 const Details = styled.div({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  width: '80%',
-  transform: 'translateY(-60%) translateX(-50%)',
-  textAlign: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.75)',
-  padding: '2rem'
+  backgroundColor: 'black',
+  padding: '2rem',
+  ...DIMENSIONS.greaterThan('medium')({
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: '100%',
+    transform: 'translateY(-60%) translateX(-50%)',
+    textAlign: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+  }),
 });
 
 const Title = styled.h1({
@@ -33,7 +37,14 @@ const Title = styled.h1({
   marginBottom: '1rem',
   padding: 0,
   color: 'white',
-  fontSize: 72
+  textTransform: 'uppercase',
+  fontSize: 28,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 40,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 72,
+  }),
 });
 
 const Dates = styled.h2({
@@ -41,19 +52,30 @@ const Dates = styled.h2({
   marginBottom: '0.5rem',
   padding: 0,
   color: 'white',
-  fontSize: 40
+  fontSize: 18,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 24,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 40,
+  }),
 });
 
 const Location = styled(Dates)({
-  fontSize: 32,
-  marginBottom: '2rem'
+  marginBottom: '2rem',
+  fontSize: 16,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 22,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 32,
+  }),
 });
 
 const CallToAction = styled(GatsbyLink)({
   backgroundColor: '#ffd503',
   color: '#222',
   padding: '1rem 1.5rem',
-  fontSize: 24,
   border: '2px solid transparent',
   transition: '175ms ease-in-out',
   textDecoration: 'none',
@@ -64,6 +86,13 @@ const CallToAction = styled(GatsbyLink)({
     backgroundColor: 'transparent',
     color: '#ffd503',
   },
+  fontSize: 16,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 18,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 24,
+  }),
 });
 
 export default function IndexPage({ data, ...rest }) {
