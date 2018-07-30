@@ -2,8 +2,6 @@ import React from 'react';
 import { Link as GatsbyLink, graphql } from 'gatsby';
 import styled from 'react-emotion';
 import GatsbyImage from 'gatsby-image';
-import format from 'date-fns/format';
-import addHours from 'date-fns/add_hours';
 
 import Layout from '../components/layout';
 import Subheader from '../components/sub-header';
@@ -21,53 +19,94 @@ const Content = styled.div({
 
 const Presentation = styled.div({
   display: 'flex',
+  padding: '0.5rem 0',
+});
+
+const PresentationDate = styled.h2({
+  margin: 0,
+  padding: '0.25rem 0',
+  margin: 0,
+  marginBottom: '1rem',
+  borderBottom: '2px solid #EEE',
+  fontSize: 32,
 });
 
 const Title = styled.h2({
   margin: 0,
   padding: 0,
+  fontWeight: 400,
+  whiteSpace: 'nowrap',
+  maxWidth: 500,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  fontSize: 20,
+});
+
+const Room = styled(Title)({
+  color: '#666',
 });
 
 const Time = styled.h2({
   margin: 0,
   padding: 0,
+  fontWeight: 400,
   color: '#444',
-  paddingRight: '2rem',
+  paddingRight: '1rem',
+  whiteSpace: 'nowrap',
+  fontSize: 20,
 });
 
 const Link = styled(GatsbyLink)({
   color: 'inherit',
   textDecoration: 'none',
 });
-const Image = styled(GatsbyImage)();
 
-const getEndDate = dateTime => addHours(new Date(dateTime), 1);
-const formatTime = dateTime => format(new Date(dateTime), 'hh:mm A');
+const Image = styled(GatsbyImage)({
+  marginLeft: '0.5rem',
+});
 
 export default function Schedule({ data, ...rest }) {
   const { presentations } = data;
-  console.log(presentations);
   return (
     <Layout {...rest}>
       <Container>
         <Subheader title="Schedule" />
         <Content>
-          {presentations.edges.map(({ node: presentation }) => (
-            <Presentation key={presentation.id}>
-              <Time>
-                {formatTime(presentation.time)} -{' '}
-                {formatTime(getEndDate(presentation.time))}
-              </Time>
-              <React.Fragment>
-                <Link to={presentation.slug}><Title>{presentation.title}</Title></Link>
+          {presentations.edges.map(({ node: presentation }, index) => {
+            const prev = index === 0 ? {} : presentations.edges[index - 1].node;
+            return (
+              <React.Fragment key={presentation.id}>
+                {presentation.day !== prev.day && (
+                  <PresentationDate>{presentation.day}</PresentationDate>
+                )}
+                <Presentation key={presentation.id}>
+                  {presentation.day !== prev.day ||
+                  presentation.start !== prev.start ? (
+                    <Time>{`${presentation.start} - ${presentation.end}`}</Time>
+                  ) : null}
+                  <div
+                    css={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      width: '100%',
+                    }}
+                  >
+                    <Link to={presentation.slug}>
+                      <Title>{presentation.title}</Title>
+                      <Room>{presentation.room.name}</Room>
+                    </Link>
+                    <div css={{ display: 'flex' }}>
+                      {(presentation.speaker || []).map(speaker => (
+                        <Link to={speaker.slug} key={speaker.id}>
+                          <Image fixed={speaker.avatar.fixed} />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </Presentation>
               </React.Fragment>
-              {(presentation.speaker || []).map(speaker => (
-                <Link to={speaker.slug} key={speaker.id}>
-                  <Image fixed={speaker.avatar.fixed} />
-                </Link>
-              ))}
-            </Presentation>
-          ))}
+            );
+          })}
         </Content>
       </Container>
     </Layout>
@@ -77,18 +116,20 @@ export default function Schedule({ data, ...rest }) {
 export const pageQuery = graphql`
   query SchedulePageQuery {
     presentations: allContentfulPresentation(
-      sort: { fields: time, order: ASC }
+      sort: { fields: startTime, order: ASC }
     ) {
       edges {
         node {
           id
           title
-          time
+          start: startTime(formatString: "hh:mm A")
+          end: endTime(formatString: "hh:mm A")
+          day: startTime(formatString: "dddd, MMMM Do")
           slug
           speaker {
             id
             avatar {
-              fixed(height: 50, width: 50) {
+              fixed(height: 40, width: 40) {
                 ...GatsbyContentfulFixed_withWebp
               }
             }

@@ -58,7 +58,9 @@ export default function PresentationPage({ data, ...rest }) {
       <Container>
         <Subheader title={presentation.title} small={true} />
         <Content>
-          <Time>{presentation.time}</Time>
+          <Time>
+            {presentation.startTime} - {presentation.endTime}
+          </Time>
           <Location>{presentation.room.name}</Location>
           <Description
             dangerouslySetInnerHTML={{
@@ -67,7 +69,7 @@ export default function PresentationPage({ data, ...rest }) {
           />
           <Speakers>
             {presentation.speaker.map(speaker => (
-              <Speaker featured={true} {...speaker} />
+              <Speaker featured={true} social={true} {...speaker} />
             ))}
           </Speakers>
         </Content>
@@ -81,7 +83,8 @@ export const pageQuery = graphql`
     presentation: contentfulPresentation(slug: { eq: $slug }) {
       id
       title
-      time(formatString: "MMMM Do - h:m A")
+      startTime(formatString: "MMMM Do - h:m A")
+      endTime(formatString: "hh:mm A")
       description {
         childMarkdownRemark {
           html
