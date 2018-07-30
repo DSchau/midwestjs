@@ -3,6 +3,8 @@ import styled from 'react-emotion';
 import { Link as GatsbyLink, StaticQuery, graphql } from 'gatsby';
 import GatsbyImage from 'gatsby-image';
 
+import { DIMENSIONS } from '../util/dimensions';
+
 const Header = styled.header({
   backgroundColor: '#222',
 });
@@ -14,11 +16,14 @@ const Subheader = styled.div({
 
 const EventMessage = styled.p({
   color: 'black',
-  fontSize: 14,
+  fontSize: 12,
   margin: 0,
   padding: 0,
   textAlign: 'center',
   textTransform: 'uppercase',
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 14,
+  }),
 });
 
 const Image = styled(GatsbyImage)({

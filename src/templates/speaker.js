@@ -35,7 +35,7 @@ export default function SpeakerPage({ data, ...rest }) {
       <Container>
         <Subheader title={speaker.name} />
         <Content>
-          <Speaker featured={true} social={true} {...speaker}>
+          <Speaker featured={true} social={true} link={false} {...speaker}>
             <PresentationContainer>
               {(speaker.presentation || []).map(presentation => (
                 <Presentation key={presentation.id}>

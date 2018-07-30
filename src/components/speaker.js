@@ -72,13 +72,15 @@ export default function Speaker({
   bio,
   github,
   twitter,
+  link,
   social,
   featured,
 }) {
+  const Wrapper = link ? Link : React.Fragment;
   return (
     <Root>
       <Container key={id} featured={featured}>
-        <Link to={slug}>
+        <Wrapper to={slug}>
           <ImageContainer>
             <Image fixed={avatar.fixed} />
           </ImageContainer>
@@ -118,7 +120,7 @@ export default function Speaker({
               </Social>
             )}
           </Details>
-        </Link>
+        </Wrapper>
         <Bio
           dangerouslySetInnerHTML={{
             __html: featured
@@ -131,6 +133,10 @@ export default function Speaker({
     </Root>
   );
 }
+
+Speaker.defaultProps = {
+  link: true,
+};
 
 export const speakerFragment = graphql`
   fragment Speaker on ContentfulSpeaker {

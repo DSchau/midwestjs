@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import styled from 'react-emotion';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
+import { injectGlobal } from 'emotion';
 
 import 'sanitize.css';
 import 'typeface-montserrat';
@@ -19,7 +20,7 @@ const Container = styled.div({
 /*
  * TODO: https://github.com/gatsbyjs/gatsby/issues/6337
  */
-export default function Layout({ children, location }) {
+export default function Layout({ children, location, meta }) {
   return (
     <StaticQuery
       query={graphql`
@@ -33,7 +34,7 @@ export default function Layout({ children, location }) {
       `}
       render={data => (
         <Container>
-          <Helmet meta={[{ name: 'description', content: '1234' }]} />
+          <Helmet meta={meta} />
           <Header location={location} />
           {children}
           <Footer />
@@ -55,3 +56,19 @@ Layout.propTypes = {
     })
   ),
 };
+
+Layout.defaultProps = {
+  meta: [],
+};
+
+injectGlobal`
+::selection {
+  color: black;
+  background: #ffd503;
+}
+
+::-moz-selection {
+  color: black;
+  background: #ffd503;
+}
+`;
