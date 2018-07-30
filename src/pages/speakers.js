@@ -3,25 +3,26 @@ import { Link, graphql } from 'gatsby';
 import styled from 'react-emotion';
 
 import Layout from '../components/layout';
+import PageTitle from '../components/page-title';
 
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column'
 });
 
-export default function IndexPage({ data }) {
+export default function Speakers({ data }) {
   const { speakers } = data;
   return (
     <Layout>
       <Container>
-
+        <PageTitle>Speakers</PageTitle>
       </Container>
     </Layout>
   );
 }
 
 export const pageQuery = graphql`
-  query IndexPageQuery {
+  query SpeakersPageQuery {
     speakers:allContentfulSpeaker {
       edges {
         node {

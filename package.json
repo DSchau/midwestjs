@@ -4,10 +4,28 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "gatsby": "^1.9.247",
-    "gatsby-link": "^1.6.40",
-    "gatsby-plugin-react-helmet": "^2.0.10",
-    "react-helmet": "^5.2.0"
+    "emotion": "~9.2.6",
+    "emotion-server": "~9.2.6",
+    "gatsby": "next",
+    "gatsby-image": "~2.0.0-beta.7",
+    "gatsby-plugin-catch-links": "~2.0.2-beta.4",
+    "gatsby-plugin-emotion": "~2.0.0-beta.3",
+    "gatsby-plugin-react-helmet": "next",
+    "gatsby-plugin-sharp": "~2.0.0-beta.7",
+    "gatsby-plugin-typography": "~1.7.19",
+    "gatsby-source-contentful": "~2.0.1-beta.15",
+    "gatsby-source-filesystem": "~2.0.1-beta.10",
+    "gatsby-transformer-remark": "~2.1.1-beta.5",
+    "gatsby-transformer-sharp": "~2.1.1-beta.6",
+    "prop-types": "~15.6.2",
+    "react": "~16.4.1",
+    "react-dom": "~16.4.1",
+    "react-emotion": "~9.2.6",
+    "react-helmet": "^5.2.0",
+    "react-typography": "~0.16.13",
+    "sanitize.css": "~6.0.0",
+    "typeface-montserrat": "~0.0.54",
+    "typography": "~0.16.17"
   },
   "keywords": [
     "gatsby"
@@ -21,10 +39,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "dotenv": "~6.0.0",
+    "limax": "~1.6.0",
     "prettier": "^1.12.0"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/gatsbyjs/gatsby-starter-default"
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
   }
 }

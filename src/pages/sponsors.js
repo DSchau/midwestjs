@@ -3,25 +3,26 @@ import { Link, graphql } from 'gatsby';
 import styled from 'react-emotion';
 
 import Layout from '../components/layout';
+import PageTitle from '../components/page-title';
 
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column'
 });
 
-export default function IndexPage({ data }) {
+export default function Sponsors({ data }) {
   const { speakers } = data;
   return (
     <Layout>
       <Container>
-
+        <PageTitle>Sponsors</PageTitle>
       </Container>
     </Layout>
   );
 }
 
 export const pageQuery = graphql`
-  query IndexPageQuery {
+  query SponsorsPageQuery {
     speakers:allContentfulSpeaker {
       edges {
         node {
