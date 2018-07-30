@@ -13,7 +13,7 @@ const Container = styled.div({
 export default function Attend({ data, ...rest }) {
   const { speakers } = data;
   return (
-    <Layout {...rest}>
+    <Layout title="Attend" {...rest}>
       <Container>
         <Subheader title="Attend" />
       </Container>

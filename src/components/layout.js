@@ -11,6 +11,8 @@ import 'typeface-montserrat';
 import Footer from './footer';
 import Header from './header';
 
+import getUniqueMetaTags from '../util/get-unique-meta-tags';
+
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
@@ -20,7 +22,7 @@ const Container = styled.div({
 /*
  * TODO: https://github.com/gatsbyjs/gatsby/issues/6337
  */
-export default function Layout({ children, location, meta }) {
+export default function Layout({ children, location, meta, title }) {
   return (
     <StaticQuery
       query={graphql`
@@ -44,8 +46,14 @@ export default function Layout({ children, location, meta }) {
       render={data => (
         <Container>
           <Helmet
-            meta={data.meta.edges.map(({ node }) => node).concat(meta)}
-            title={data.site.siteMetadata.title}
+            meta={getUniqueMetaTags(
+              data.meta.edges
+                .map(({ node }) => node)
+                .concat(meta)
+                .reverse()
+            )}
+            title={title}
+            titleTemplate={`${data.site.siteMetadata.title} | %s`}
           />
           <Header location={location} />
           {children}
@@ -67,10 +75,12 @@ Layout.propTypes = {
       content: PropTypes.string,
     })
   ),
+  title: PropTypes.string.isRequired,
 };
 
 Layout.defaultProps = {
   meta: [],
+  title: '',
 };
 
 injectGlobal`

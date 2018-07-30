@@ -34,7 +34,17 @@ const Grid = styled.div({
 export default function Speakers({ data, ...rest }) {
   const { featured, speakers } = data;
   return (
-    <Layout {...rest}>
+    <Layout
+      title="Speakers"
+      meta={[
+        {
+          name: 'description',
+          content:
+            'Midwest JS is a premier technology conference focused on the JavaScript ecosystem. Learn more about our excellent speakers for this Minneapolis, MN conference.',
+        },
+      ]}
+      {...rest}
+    >
       <Container>
         <Subheader title="Speakers" />
         <Content>

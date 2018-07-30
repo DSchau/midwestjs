@@ -68,7 +68,17 @@ const Image = styled(GatsbyImage)({
 export default function Schedule({ data, ...rest }) {
   const { presentations } = data;
   return (
-    <Layout {...rest}>
+    <Layout
+      title="Schedule"
+      meta={[
+        {
+          name: 'description',
+          content:
+            'Midwest JS is a premier technology conference focused on the JavaScript ecosystem. August 8th, 2018 will be workshop focused, and August 9th-10th will be multi-track presentations.',
+        },
+      ]}
+      {...rest}
+    >
       <Container>
         <Subheader title="Schedule" />
         <Content>

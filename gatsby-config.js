@@ -4,7 +4,7 @@ require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: 'Midwest JS 2018',
+    title: 'Midwest JS',
     navigationItems: [
       {
         href: '/schedule',

@@ -50,7 +50,17 @@ const Image = styled(GatsbyImage)({
 export default function Sponsors({ data, ...rest }) {
   const { sponsors } = data;
   return (
-    <Layout {...rest}>
+    <Layout
+      title="Sponsors"
+      meta={[
+        {
+          name: 'description',
+          content:
+            'Midwest JS is a premier technology conference focused on the JavaScript ecosystem. Learn more about our invaluable sponsors, without which this conference would not be possible.',
+        },
+      ]}
+      {...rest}
+    >
       <Container>
         <Subheader title="Sponsors" />
         <Content>

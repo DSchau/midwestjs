@@ -19,7 +19,17 @@ const Content = styled.div({
 export default function Conduct({ data, ...rest }) {
   const { conduct } = data;
   return (
-    <Layout {...rest}>
+    <Layout
+      title={conduct.name}
+      meta={[
+        {
+          name: 'description',
+          content:
+            'Midwest JS is a premier technology conference focused on the JavaScript ecosystem. We are governed by a code of conduct, so please check this out to learn more about this code.',
+        },
+      ]}
+      {...rest}
+    >
       <Container>
         <Subheader title={conduct.name} />
         <Content

@@ -98,7 +98,7 @@ const CallToAction = styled(GatsbyLink)({
 export default function IndexPage({ data, ...rest }) {
   const { hero, speakers } = data;
   return (
-    <Layout {...rest}>
+    <Layout title="2018" {...rest}>
       <Container>
         <Hero>
           <Image fluid={hero.image.fluid} />

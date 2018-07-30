@@ -12,7 +12,7 @@ const Container = styled.div({
 
 export default function Venue({ data, ...rest }) {
   return (
-    <Layout {...rest}>
+    <Layout title="Venue" {...rest}>
       <Container>
         <Subheader title="Venue" />
       </Container>
