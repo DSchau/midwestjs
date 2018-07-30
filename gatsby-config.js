@@ -4,29 +4,29 @@ require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: 'MidwestJS',
+    title: 'Midwest JS 2018',
     navigationItems: [
       {
         href: '/schedule',
-        label: 'Schedule'
+        label: 'Schedule',
       },
       {
         href: '/speakers',
-        label: 'Speakers'
+        label: 'Speakers',
       },
       {
         href: '/venue',
-        label: 'Venue'
+        label: 'Venue',
       },
       {
         href: '/sponsors',
-        label: 'Sponsors'
+        label: 'Sponsors',
       },
       {
         href: '/conduct',
-        label: 'Conduct'
-      }
-    ]
+        label: 'Conduct',
+      },
+    ],
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -37,20 +37,20 @@ module.exports = {
       resolve: 'gatsby-plugin-typography',
       options: {
         pathToConfigModule: 'src/util/typography',
-        omitGoogleFont: true
+        omitGoogleFont: true,
       },
     },
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
-      options: {}
+      options: {},
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: path.resolve('content/images'),
-        name: 'images'
-      }
+        name: 'images',
+      },
     },
     {
       resolve: 'gatsby-source-contentful',
@@ -60,4 +60,4 @@ module.exports = {
       },
     },
   ],
-}
+};

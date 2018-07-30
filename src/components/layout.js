@@ -30,11 +30,23 @@ export default function Layout({ children, location, meta }) {
               title
             }
           }
+
+          meta: allContentfulMetaTag {
+            edges {
+              node {
+                name
+                content
+              }
+            }
+          }
         }
       `}
       render={data => (
         <Container>
-          <Helmet meta={meta} />
+          <Helmet
+            meta={data.meta.edges.map(({ node }) => node).concat(meta)}
+            title={data.site.siteMetadata.title}
+          />
           <Header location={location} />
           {children}
           <Footer />
