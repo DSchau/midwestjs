@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Dustin Schau <dustinschau@gmail.com>",
   "dependencies": {
+    "date-fns": "~1.29.0",
     "emotion": "~9.2.6",
     "emotion-server": "~9.2.6",
     "gatsby": "next",
@@ -22,6 +23,7 @@
     "react-dom": "~16.4.1",
     "react-emotion": "~9.2.6",
     "react-helmet": "^5.2.0",
+    "react-icons": "~3.0.1",
     "react-typography": "~0.16.13",
     "sanitize.css": "~6.0.0",
     "typeface-montserrat": "~0.0.54",

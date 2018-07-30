@@ -2,11 +2,24 @@ import React from 'react';
 import { Link as GatsbyLink, graphql } from 'gatsby';
 import styled from 'react-emotion';
 import GatsbyImage from 'gatsby-image';
+import { FaGithubSquare, FaTwitterSquare } from 'react-icons/fa';
 
-const Container = styled.div({
-  padding: '0.5rem 1rem',
-  margin: '0 auto',
+const Root = styled.div({
+  padding: '1rem',
+  margin: '1rem auto',
 });
+
+const Container = styled.div({}, ({ featured }) => ({
+  ...(featured
+    ? {
+        border: '4px solid #EEE',
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        padding: '1rem 0',
+        margin: '1rem 0',
+      }
+    : {}),
+}));
 
 const Name = styled.h2({
   margin: 0,
@@ -26,38 +39,96 @@ const Bio = styled.div({
 });
 
 const ImageContainer = styled.div({ textAlign: 'center' });
+const Details = styled.div({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+const Social = styled.div({
+  display: 'flex',
+});
+const A = styled.a({
+  color: 'inherit',
+  textDecoration: 'none',
+});
+
+A.defaultProps = {
+  target: '_blank',
+  rel: 'noopener',
+};
+
 const Image = styled(GatsbyImage)();
 const Link = styled(GatsbyLink)({
   textDecoration: 'none',
   color: 'inherit',
 });
-
 export default function Speaker({
   id,
+  children,
   slug,
   avatar,
   name,
   company,
   bio,
-  simple,
+  github,
+  twitter,
+  social,
+  featured,
 }) {
   return (
-    <Container key={id}>
-      <Link to={slug}>
-        <ImageContainer>
-          <Image fixed={avatar.fixed} />
-        </ImageContainer>
-        <Name>{name}</Name>
-        {company && <Company>{company}</Company>}
-      </Link>
-      <Bio
-        dangerouslySetInnerHTML={{
-          __html: simple
-            ? bio.childMarkdownRemark.excerpt
-            : bio.childMarkdownRemark.html,
-        }}
-      />
-    </Container>
+    <Root>
+      <Container key={id} featured={featured}>
+        <Link to={slug}>
+          <ImageContainer>
+            <Image fixed={avatar.fixed} />
+          </ImageContainer>
+          <Details>
+            <div>
+              <Name>{name}</Name>
+              {company && <Company>{company}</Company>}
+            </div>
+            {social && (
+              <Social>
+                {twitter && (
+                  <A
+                    css={{
+                      padding: '0.5rem',
+                      color: '#999',
+                      transition: '175ms ease-in-out',
+                      ':hover': { color: '#1da1f2' },
+                    }}
+                    href={twitter}
+                  >
+                    <FaTwitterSquare size={32} />
+                  </A>
+                )}
+                {github && (
+                  <A
+                    css={{
+                      padding: '0.5rem',
+                      color: '#999',
+                      transition: '175ms ease-in-out',
+                      ':hover': { color: '#333' },
+                    }}
+                    href={github}
+                  >
+                    <FaGithubSquare size={32} />
+                  </A>
+                )}
+              </Social>
+            )}
+          </Details>
+        </Link>
+        <Bio
+          dangerouslySetInnerHTML={{
+            __html: featured
+              ? bio.childMarkdownRemark.html
+              : bio.childMarkdownRemark.excerpt,
+          }}
+        />
+      </Container>
+      {children}
+    </Root>
   );
 }
 

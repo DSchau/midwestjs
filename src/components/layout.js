@@ -18,7 +18,7 @@ const Container = styled.div({
 /*
  * TODO: https://github.com/gatsbyjs/gatsby/issues/6337
  */
-export default function Layout({ children }) {
+export default function Layout({ children, location }) {
   return (
     <StaticQuery
       query={graphql`
@@ -33,7 +33,7 @@ export default function Layout({ children }) {
       render={data => (
         <Container>
           <Helmet meta={[{ name: 'description', content: '1234' }]} />
-          <Header />
+          <Header location={location} />
           {children}
           <Footer />
         </Container>

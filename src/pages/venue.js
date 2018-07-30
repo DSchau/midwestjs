@@ -10,10 +10,10 @@ const Container = styled.div({
   flexDirection: 'column',
 });
 
-export default function Venue({ data }) {
+export default function Venue({ data, ...rest }) {
   const { speakers } = data;
   return (
-    <Layout>
+    <Layout {...rest}>
       <Container>
         <Subheader title="Venue" />
       </Container>

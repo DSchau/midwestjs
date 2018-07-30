@@ -47,10 +47,10 @@ const Image = styled(GatsbyImage)({
 /*
  * TODO: get images looking nicer
  */
-export default function Sponsors({ data }) {
+export default function Sponsors({ data, ...rest }) {
   const { sponsors } = data;
   return (
-    <Layout>
+    <Layout {...rest}>
       <Container>
         <Subheader title="Sponsors" />
         <Content>

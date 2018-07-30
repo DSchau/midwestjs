@@ -5,7 +5,18 @@ import GatsbyImage from 'gatsby-image';
 
 const Header = styled.header({
   backgroundColor: '#222',
-  padding: '1rem',
+});
+
+const Subheader = styled.div({
+  backgroundColor: '#ffd503',
+  padding: '0.5rem 1rem',
+});
+
+const EventMessage = styled.p({
+  color: 'black',
+  margin: 0,
+  padding: 0,
+  textAlign: 'center',
 });
 
 const Image = styled(GatsbyImage)({
@@ -21,6 +32,7 @@ const Image = styled(GatsbyImage)({
 const Navigation = styled.nav({
   display: 'flex',
   alignItems: 'center',
+  padding: '1rem',
 });
 
 const NavigationList = styled.ul({
@@ -83,7 +95,7 @@ const AttendLink = styled(GatsbyLink)({
   },
 });
 
-export default function HeaderComponent() {
+export default function HeaderComponent({ location }) {
   return (
     <StaticQuery
       query={graphql`
@@ -108,6 +120,13 @@ export default function HeaderComponent() {
       `}
       render={data => (
         <Header>
+          {location.pathname === '/' && (
+            <Subheader>
+              <EventMessage>
+                Join us in Minneapolis, MN on 8/8 - 8/10!
+              </EventMessage>
+            </Subheader>
+          )}
           <Navigation>
             <IndexLink to="/">
               <Image fixed={data.logo.image.fixed} />
@@ -115,7 +134,9 @@ export default function HeaderComponent() {
             <NavigationList>
               {data.site.siteMetadata.navigationItems.map(({ href, label }) => (
                 <NavigationItem key={href}>
-                  <Link to={href}>{label}</Link>
+                  <Link to={href} exact={label !== 'Speakers'}>
+                    {label}
+                  </Link>
                 </NavigationItem>
               ))}
               <NavigationItem>

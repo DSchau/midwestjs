@@ -16,10 +16,10 @@ const Content = styled.div({
   padding: '1rem',
 });
 
-export default function Conduct({ data }) {
+export default function Conduct({ data, ...rest }) {
   const { conduct } = data;
   return (
-    <Layout>
+    <Layout {...rest}>
       <Container>
         <Subheader title={conduct.name} />
         <Content

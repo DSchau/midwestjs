@@ -31,19 +31,19 @@ const Grid = styled.div({
   }),
 });
 
-export default function Speakers({ data }) {
+export default function Speakers({ data, ...rest }) {
   const { featured, speakers } = data;
   return (
-    <Layout>
+    <Layout {...rest}>
       <Container>
         <Subheader title="Speakers" />
         <Content>
           {featured.edges.map(({ node: speaker }) => (
-            <Speaker key={speaker.id} {...speaker} />
+            <Speaker key={speaker.id} featured={true} {...speaker} />
           ))}
           <Grid>
             {speakers.edges.map(({ node: speaker }) => (
-              <Speaker key={speaker.id} simple={true} {...speaker} />
+              <Speaker key={speaker.id} {...speaker} />
             ))}
           </Grid>
         </Content>

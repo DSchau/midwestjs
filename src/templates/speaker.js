@@ -17,14 +17,38 @@ const Content = styled.div({
   maxWidth: 960,
 });
 
-export default function SpeakerPage({ data }) {
+const PresentationContainer = styled.div();
+const Presentation = styled.div();
+const PresentationTitle = styled.h2({
+  margin: 0,
+  padding: 0,
+  marginBottom: '0.5rem',
+});
+const PresentationDescription = styled.div({
+  lineHeight: 1.5,
+});
+
+export default function SpeakerPage({ data, ...rest }) {
   const { speaker } = data;
   return (
-    <Layout>
+    <Layout {...rest}>
       <Container>
         <Subheader title={speaker.name} />
         <Content>
-          <Speaker {...speaker} />
+          <Speaker featured={true} social={true} {...speaker}>
+            <PresentationContainer>
+              {(speaker.presentation || []).map(presentation => (
+                <Presentation key={presentation.id}>
+                  <PresentationTitle>{presentation.title}</PresentationTitle>
+                  <PresentationDescription
+                    dangerouslySetInnerHTML={{
+                      __html: presentation.description.childMarkdownRemark.html,
+                    }}
+                  />
+                </Presentation>
+              ))}
+            </PresentationContainer>
+          </Speaker>
         </Content>
       </Container>
     </Layout>
@@ -34,6 +58,15 @@ export default function SpeakerPage({ data }) {
 export const pageQuery = graphql`
   query SpeakerBySlugQuery($slug: String!) {
     speaker: contentfulSpeaker(slug: { eq: $slug }) {
+      presentation {
+        id
+        title
+        description {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
       ...Speaker
     }
   }

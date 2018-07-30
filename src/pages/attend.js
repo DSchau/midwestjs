@@ -10,10 +10,10 @@ const Container = styled.div({
   flexDirection: 'column',
 });
 
-export default function Attend({ data }) {
+export default function Attend({ data, ...rest }) {
   const { speakers } = data;
   return (
-    <Layout>
+    <Layout {...rest}>
       <Container>
         <Subheader title="Attend" />
       </Container>
