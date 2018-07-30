@@ -12,5 +12,5 @@ export default styled.h1({
   borderRightWidth: 0,
   textAlign: 'center',
   textTransform: 'uppercase',
-  width: 'auto'
+  width: 'auto',
 });

@@ -12,7 +12,7 @@ import Header from './header';
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
-  fontFamily: 'Montserrat, sans-serif'
+  fontFamily: 'Montserrat, sans-serif',
 });
 
 /*
@@ -32,11 +32,7 @@ export default function Layout({ children }) {
       `}
       render={data => (
         <Container>
-          <Helmet
-            meta={[
-              { name: 'description', content: '1234' }
-            ]}
-          />
+          <Helmet meta={[{ name: 'description', content: '1234' }]} />
           <Header />
           {children}
           <Footer />

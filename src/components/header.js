@@ -4,7 +4,7 @@ import { Link as GatsbyLink, StaticQuery, graphql } from 'gatsby';
 
 const Header = styled.header({
   backgroundColor: '#222',
-  padding: '1rem'
+  padding: '1rem',
 });
 
 const Image = styled.img({
@@ -13,8 +13,8 @@ const Image = styled.img({
   marginRight: '2rem',
   marginBottom: 0,
   ':hover': {
-    filter: 'grayscale(0)'
-  }
+    filter: 'grayscale(0)',
+  },
 });
 
 const Navigation = styled.nav({
@@ -27,7 +27,7 @@ const NavigationList = styled.ul({
   justifyContent: 'space-between',
   width: '100%',
   margin: 0,
-  padding: 0
+  padding: 0,
 });
 
 const NavigationItem = styled.li({
@@ -37,13 +37,13 @@ const NavigationItem = styled.li({
   listStyleType: 'none',
   marginBottom: 0,
   padding: 0,
-  textTransform: 'uppercase'
+  textTransform: 'uppercase',
 });
 
 const Link = styled(GatsbyLink)({
   color: 'white',
   padding: '0.5rem',
-  textDecoration: 'none'
+  textDecoration: 'none',
 });
 
 const AttendLink = styled(GatsbyLink)({
@@ -56,8 +56,8 @@ const AttendLink = styled(GatsbyLink)({
   ':hover': {
     borderColor: '#ffd503',
     backgroundColor: 'transparent',
-    color: '#ffd503'
-  }
+    color: '#ffd503',
+  },
 });
 
 export default function HeaderComponent() {
@@ -66,15 +66,15 @@ export default function HeaderComponent() {
       query={graphql`
         query {
           site {
-              siteMetadata {
-                navigationItems {
-                  href
-                  label
-                }
+            siteMetadata {
+              navigationItems {
+                href
+                label
               }
             }
+          }
 
-          logo:file(relativePath: { eq: "logo.png" }) {
+          logo: file(relativePath: { eq: "logo.png" }) {
             transformed: childImageSharp {
               fixed(height: 48, width: 48) {
                 src
@@ -86,17 +86,22 @@ export default function HeaderComponent() {
       render={data => (
         <Header>
           <Navigation>
-            <Link to="/"><Image src={data.logo.transformed.fixed.src} /></Link>
+            <Link to="/">
+              <Image src={data.logo.transformed.fixed.src} />
+            </Link>
             <NavigationList>
               {data.site.siteMetadata.navigationItems.map(({ href, label }) => (
-                <NavigationItem key={href}><Link to={href}>{label}</Link></NavigationItem>
+                <NavigationItem key={href}>
+                  <Link to={href}>{label}</Link>
+                </NavigationItem>
               ))}
-              <NavigationItem><AttendLink to="/attend">Attend</AttendLink></NavigationItem>
+              <NavigationItem>
+                <AttendLink to="/attend">Attend</AttendLink>
+              </NavigationItem>
             </NavigationList>
           </Navigation>
         </Header>
       )}
     />
-
   );
 }

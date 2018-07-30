@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from 'react-emotion';
 
@@ -7,7 +7,7 @@ import PageTitle from '../components/page-title';
 
 const Container = styled.div({
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
 });
 
 export default function Speakers({ data }) {
@@ -23,7 +23,7 @@ export default function Speakers({ data }) {
 
 export const pageQuery = graphql`
   query SpeakersPageQuery {
-    speakers:allContentfulSpeaker {
+    speakers: allContentfulSpeaker {
       edges {
         node {
           id

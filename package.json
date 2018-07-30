@@ -1,8 +1,8 @@
 {
   "name": "midwestjs.com",
-  "description": "The gatsby generated variant of MiwestJS",
+  "description": "The gatsby generated variant of MidwestJS",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Dustin Schau <dustinschau@gmail.com>",
   "dependencies": {
     "emotion": "~9.2.6",
     "emotion-server": "~9.2.6",
@@ -32,6 +32,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "precommit": "pretty-quick --staged",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
@@ -40,8 +41,10 @@
   },
   "devDependencies": {
     "dotenv": "~6.0.0",
+    "husky": "~0.14.3",
     "limax": "~1.6.0",
-    "prettier": "^1.12.0"
+    "prettier": "~1.14.0",
+    "pretty-quick": "~1.6.0"
   },
   "repository": {
     "type": "git",

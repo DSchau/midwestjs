@@ -9,10 +9,10 @@ module.exports = ({ type }) => {
         resolve(source, fieldArgs) {
           const { name } = source;
           return `/speakers/${slugify(name)}`;
-        }
-      }
-    }
+        },
+      },
+    };
   }
 
-  return {}
-}
+  return {};
+};

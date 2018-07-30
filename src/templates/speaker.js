@@ -7,12 +7,12 @@ import Layout from '../components/layout';
 
 const Container = styled.div({
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
 });
 
 const Header = styled.header({
   padding: '2.5rem 0.5rem',
-  backgroundColor: '#222'
+  backgroundColor: '#222',
 });
 
 const Name = styled.h1({
@@ -20,23 +20,23 @@ const Name = styled.h1({
   margin: 0,
   padding: 0,
   color: 'white',
-  textAlign: 'center'
+  textAlign: 'center',
 });
 
 const Content = styled.div({
   margin: '0 auto',
   padding: '1rem',
-  maxWidth: 960
+  maxWidth: 960,
 });
 
 const Bio = styled.div({
-  margin: '2rem 0'
+  margin: '2rem 0',
 });
 
 const Avatar = styled(Image)({
   margin: '0 auto',
   borderRadius: 250,
-  maxWidth: 250
+  maxWidth: 250,
 });
 
 export default function Speaker({ data }) {
@@ -44,7 +44,9 @@ export default function Speaker({ data }) {
   return (
     <Layout>
       <Container>
-        <Header><Name>{speaker.name}</Name></Header>
+        <Header>
+          <Name>{speaker.name}</Name>
+        </Header>
         <Content>
           <Avatar sizes={speaker.avatar.sizes} />
           <Bio dangerouslySetInnerHTML={{ __html: speaker.bio.bio }} />
@@ -56,7 +58,7 @@ export default function Speaker({ data }) {
 
 export const pageQuery = graphql`
   query SpeakerBySlugQuery($slug: String!) {
-    speaker:contentfulSpeaker(slug: { eq: $slug }) {
+    speaker: contentfulSpeaker(slug: { eq: $slug }) {
       id
       name
       avatar {
