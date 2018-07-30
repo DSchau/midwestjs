@@ -85,13 +85,12 @@ const Link = styled(IndexLink)({
 
 Link.defaultProps = {
   activeClassName: 'active',
-  exact: true,
 };
 
 const AttendLink = styled(GatsbyLink)({
   backgroundColor: '#ffd503',
   color: '#222',
-  padding: '1rem 1.5rem',
+  padding: '0.5rem 1.5rem',
   border: '2px solid transparent',
   transition: '175ms ease-in-out',
   textDecoration: 'none',
@@ -135,15 +134,13 @@ export default function HeaderComponent({ location }) {
             </Subheader>
           )}
           <Navigation>
-            <IndexLink to="/">
+            <IndexLink to="/" exact={true}>
               <Image fixed={data.logo.image.fixed} />
             </IndexLink>
             <NavigationList>
               {data.site.siteMetadata.navigationItems.map(({ href, label }) => (
                 <NavigationItem key={href}>
-                  <Link to={href} exact={label !== 'Speakers'}>
-                    {label}
-                  </Link>
+                  <Link to={href}>{label}</Link>
                 </NavigationItem>
               ))}
               <NavigationItem>

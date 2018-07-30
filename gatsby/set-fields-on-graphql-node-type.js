@@ -22,6 +22,15 @@ module.exports = ({ type }) => {
         },
       },
     };
+  } else if (type.name === 'ContentfulSponsor') {
+    return {
+      slug: {
+        type: GraphQLString,
+        resolve(source, fieldArgs) {
+          return getSlug('sponsors', source.name);
+        },
+      },
+    };
   }
 
   return {};

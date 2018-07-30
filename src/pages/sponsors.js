@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { Link as GatsbyLink, graphql } from 'gatsby';
 import styled from 'react-emotion';
 import GatsbyImage from 'gatsby-image';
 
@@ -44,6 +44,11 @@ const Image = styled(GatsbyImage)({
   },
 });
 
+const Link = styled(GatsbyLink)({
+  color: 'inherit',
+  textDecoration: 'none',
+});
+
 /*
  * TODO: get images looking nicer
  */
@@ -65,9 +70,11 @@ export default function Sponsors({ data, ...rest }) {
         <Subheader title="Sponsors" />
         <Content>
           <Grid>
-            {sponsors.edges.map(({ node }) => (
-              <Sponsor key={node.name}>
-                <Image fluid={node.logo.fluid} />
+            {sponsors.edges.map(({ node: sponsor }) => (
+              <Sponsor key={sponsor.name}>
+                <Link to={sponsor.slug}>
+                  <Image fixed={sponsor.logo.fixed} />
+                </Link>
               </Sponsor>
             ))}
           </Grid>
@@ -79,18 +86,19 @@ export default function Sponsors({ data, ...rest }) {
 
 export const pageQuery = graphql`
   query SponsorsPageQuery {
-    sponsors: allContentfulSponsor {
+    sponsors: allContentfulSponsor(sort: { fields: [name], order: ASC }) {
       edges {
         node {
           name
+          slug
           description {
             childMarkdownRemark {
               html
             }
           }
           logo {
-            fluid(maxWidth: 500) {
-              ...GatsbyContentfulFluid_withWebp
+            fixed(width: 250) {
+              ...GatsbyContentfulFixed_withWebp
             }
           }
         }

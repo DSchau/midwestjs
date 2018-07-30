@@ -6,12 +6,15 @@ import GatsbyImage from 'gatsby-image';
 import Layout from '../components/layout';
 import Subheader from '../components/sub-header';
 
+import { DIMENSIONS } from '../util/dimensions';
+
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
 });
 
 const Content = styled.div({
+  width: '100%',
   maxWidth: 900,
   margin: '1rem auto',
   padding: '1rem',
@@ -20,15 +23,21 @@ const Content = styled.div({
 const Presentation = styled.div({
   display: 'flex',
   padding: '0.5rem 0',
+  width: '100%',
 });
 
 const PresentationDate = styled.h2({
   margin: 0,
   padding: '0.25rem 0',
-  margin: 0,
   marginBottom: '1rem',
   borderBottom: '2px solid #EEE',
-  fontSize: 32,
+  fontSize: 20,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 24,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 32,
+  }),
 });
 
 const Title = styled.h2({
@@ -36,10 +45,18 @@ const Title = styled.h2({
   padding: 0,
   fontWeight: 400,
   whiteSpace: 'nowrap',
-  maxWidth: 500,
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  fontSize: 20,
+  fontSize: 12,
+  maxWidth: 200,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 16,
+    maxWidth: 350,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 20,
+    maxWidth: 500,
+  }),
 });
 
 const Room = styled(Title)({
@@ -53,12 +70,29 @@ const Time = styled.h2({
   color: '#444',
   paddingRight: '1rem',
   whiteSpace: 'nowrap',
-  fontSize: 20,
+  fontSize: 12,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 16,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 20,
+  }),
+});
+
+const Spacer = styled(Time)({
+  visibility: 'hidden',
 });
 
 const Link = styled(GatsbyLink)({
   color: 'inherit',
   textDecoration: 'none',
+});
+
+const Images = styled.div({
+  display: 'none',
+  ...DIMENSIONS.greaterThan('large')({
+    display: 'flex',
+  }),
 });
 
 const Image = styled(GatsbyImage)({
@@ -84,16 +118,19 @@ export default function Schedule({ data, ...rest }) {
         <Content>
           {presentations.edges.map(({ node: presentation }, index) => {
             const prev = index === 0 ? {} : presentations.edges[index - 1].node;
+            const TimeWrapper =
+              presentation.day !== prev.day || presentation.start !== prev.start
+                ? Time
+                : Spacer;
             return (
               <React.Fragment key={presentation.id}>
                 {presentation.day !== prev.day && (
                   <PresentationDate>{presentation.day}</PresentationDate>
                 )}
-                <Presentation key={presentation.id}>
-                  {presentation.day !== prev.day ||
-                  presentation.start !== prev.start ? (
-                    <Time>{`${presentation.start} - ${presentation.end}`}</Time>
-                  ) : null}
+                <Presentation>
+                  <TimeWrapper>{`${presentation.start} - ${
+                    presentation.end
+                  }`}</TimeWrapper>
                   <div
                     css={{
                       display: 'flex',
@@ -102,16 +139,18 @@ export default function Schedule({ data, ...rest }) {
                     }}
                   >
                     <Link to={presentation.slug}>
-                      <Title>{presentation.title}</Title>
+                      <Title title={presentation.title}>
+                        {presentation.title}
+                      </Title>
                       <Room>{presentation.room.name}</Room>
                     </Link>
-                    <div css={{ display: 'flex' }}>
+                    <Images>
                       {(presentation.speaker || []).map(speaker => (
                         <Link to={speaker.slug} key={speaker.id}>
                           <Image fixed={speaker.avatar.fixed} />
                         </Link>
                       ))}
-                    </div>
+                    </Images>
                   </div>
                 </Presentation>
               </React.Fragment>
@@ -126,7 +165,7 @@ export default function Schedule({ data, ...rest }) {
 export const pageQuery = graphql`
   query SchedulePageQuery {
     presentations: allContentfulPresentation(
-      sort: { fields: startTime, order: ASC }
+      sort: { fields: [startTime, room___NODE], order: ASC }
     ) {
       edges {
         node {

@@ -6,6 +6,7 @@ module.exports = function createPages({ actions, graphql }) {
 
   const speakerTemplate = path.resolve('src/templates/speaker.js');
   const presentationTemplate = path.resolve('src/templates/presentation.js');
+  const sponsorTemplate = path.resolve('src/templates/sponsor.js');
 
   return graphql(`
     {
@@ -24,32 +25,36 @@ module.exports = function createPages({ actions, graphql }) {
           }
         }
       }
+
+      sponsors: allContentfulSponsor {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
 
-    const { speakers, presentations } = result.data;
+    const { speakers, presentations, sponsors } = result.data;
 
-    speakers.edges.forEach(({ node: speaker }) => {
-      createPage({
-        component: speakerTemplate,
-        path: speaker.slug,
-        context: {
-          slug: speaker.slug,
-        },
+    const createPageGroup = (type, template) => {
+      type.edges.forEach(({ node }) => {
+        createPage({
+          component: template,
+          path: node.slug,
+          context: {
+            slug: node.slug,
+          },
+        });
       });
-    });
+    };
 
-    presentations.edges.forEach(({ node: presentation }) => {
-      createPage({
-        component: presentationTemplate,
-        path: presentation.slug,
-        context: {
-          slug: presentation.slug,
-        },
-      });
-    });
+    createPageGroup(speakers, speakerTemplate);
+    createPageGroup(presentations, presentationTemplate);
+    createPageGroup(sponsors, sponsorTemplate);
   });
 };

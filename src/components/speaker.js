@@ -83,47 +83,47 @@ export default function Speaker({
   return (
     <Root>
       <Container key={id} featured={featured}>
-        <Wrapper to={slug}>
-          <ImageContainer>
-            <Image fixed={avatar.fixed} />
-          </ImageContainer>
-          <Details>
+        <ImageContainer>
+          <Image fixed={avatar.fixed} />
+        </ImageContainer>
+        <Details>
+          <Wrapper {...(link ? { to: slug } : {})}>
             <div>
               <Name>{name}</Name>
               {company && <Company>{company}</Company>}
             </div>
-            {social && (
-              <Social>
-                {twitter && (
-                  <A
-                    css={{
-                      padding: '0.5rem',
-                      color: '#999',
-                      transition: '175ms ease-in-out',
-                      ':hover': { color: '#1da1f2' },
-                    }}
-                    href={twitter}
-                  >
-                    <FaTwitterSquare size={32} />
-                  </A>
-                )}
-                {github && (
-                  <A
-                    css={{
-                      padding: '0.5rem',
-                      color: '#999',
-                      transition: '175ms ease-in-out',
-                      ':hover': { color: '#333' },
-                    }}
-                    href={github}
-                  >
-                    <FaGithubSquare size={32} />
-                  </A>
-                )}
-              </Social>
-            )}
-          </Details>
-        </Wrapper>
+          </Wrapper>
+          {social && (
+            <Social>
+              {twitter && (
+                <A
+                  css={{
+                    padding: '0.5rem',
+                    color: '#999',
+                    transition: '175ms ease-in-out',
+                    ':hover': { color: '#1da1f2' },
+                  }}
+                  href={twitter}
+                >
+                  <FaTwitterSquare size={32} />
+                </A>
+              )}
+              {github && (
+                <A
+                  css={{
+                    padding: '0.5rem',
+                    color: '#999',
+                    transition: '175ms ease-in-out',
+                    ':hover': { color: '#333' },
+                  }}
+                  href={github}
+                >
+                  <FaGithubSquare size={32} />
+                </A>
+              )}
+            </Social>
+          )}
+        </Details>
         <Bio
           dangerouslySetInnerHTML={{
             __html: featured

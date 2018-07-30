@@ -69,7 +69,12 @@ export default function PresentationPage({ data, ...rest }) {
           />
           <Speakers>
             {presentation.speaker.map(speaker => (
-              <Speaker featured={true} social={true} {...speaker} />
+              <Speaker
+                featured={true}
+                social={true}
+                key={speaker.id}
+                {...speaker}
+              />
             ))}
           </Speakers>
         </Content>
@@ -94,6 +99,7 @@ export const pageQuery = graphql`
         name
       }
       speaker {
+        id
         ...Speaker
       }
     }
