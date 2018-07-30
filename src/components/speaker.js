@@ -5,8 +5,12 @@ import GatsbyImage from 'gatsby-image';
 import { FaGithubSquare, FaTwitterSquare } from 'react-icons/fa';
 
 const Root = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
   padding: '1rem',
   margin: '1rem auto',
+  width: '100%',
+  height: '100%',
 });
 
 const Container = styled.div({}, ({ featured }) => ({

@@ -5,10 +5,19 @@ module.exports = function createPages({ actions, graphql }) {
   const { createPage } = actions;
 
   const speakerTemplate = path.resolve('src/templates/speaker.js');
+  const presentationTemplate = path.resolve('src/templates/presentation.js');
 
   return graphql(`
     {
       speakers: allContentfulSpeaker {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+
+      presentations: allContentfulPresentation {
         edges {
           node {
             slug
@@ -21,7 +30,7 @@ module.exports = function createPages({ actions, graphql }) {
       return Promise.reject(result.errors);
     }
 
-    const { speakers } = result.data;
+    const { speakers, presentations } = result.data;
 
     speakers.edges.forEach(({ node: speaker }) => {
       createPage({
@@ -29,6 +38,16 @@ module.exports = function createPages({ actions, graphql }) {
         path: speaker.slug,
         context: {
           slug: speaker.slug,
+        },
+      });
+    });
+
+    presentations.edges.forEach(({ node: presentation }) => {
+      createPage({
+        component: presentationTemplate,
+        path: presentation.slug,
+        context: {
+          slug: presentation.slug,
         },
       });
     });

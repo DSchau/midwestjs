@@ -10,21 +10,33 @@ const Container = styled.div({
   position: 'relative',
 });
 
-const Title = styled.h1({
-  fontSize: 48,
-  ...DIMENSIONS.greaterThan('medium')({
-    fontSize: 96,
-  }),
-  margin: 0,
-  padding: 0,
-  color: 'white',
-  textAlign: 'center',
-});
+const Title = styled.h1(
+  {
+    fontSize: 48,
+    ...DIMENSIONS.greaterThan('medium')({
+      fontSize: 96,
+    }),
+    margin: 0,
+    padding: 0,
+    color: 'white',
+    textAlign: 'center',
+  },
+  ({ small }) => ({
+    ...(small
+      ? {
+          fontSize: 32,
+          ...DIMENSIONS.greaterThan('medium')({
+            fontSize: 48,
+          }),
+        }
+      : {}),
+  })
+);
 
-export default function Subheader({ title }) {
+export default function Subheader({ small, title }) {
   return (
     <Container>
-      <Title>{title}</Title>
+      <Title small={small}>{title}</Title>
     </Container>
   );
 }

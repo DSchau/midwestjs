@@ -1,7 +1,7 @@
 const { GraphQLString } = require('gatsby/graphql');
 const slugify = require('limax');
 
-const getSlug = name => `/speakers/${slugify(name)}`;
+const getSlug = (part, name) => `/${part}/${slugify(name)}`;
 
 module.exports = ({ type }) => {
   if (type.name === 'ContentfulSpeaker') {
@@ -9,7 +9,7 @@ module.exports = ({ type }) => {
       slug: {
         type: GraphQLString,
         resolve(source, fieldArgs) {
-          return getSlug(source.name);
+          return getSlug('speakers', source.name);
         },
       },
     };
@@ -18,7 +18,7 @@ module.exports = ({ type }) => {
       slug: {
         type: GraphQLString,
         resolve(source, fieldArgs) {
-          return getSlug(source.presentation.name);
+          return getSlug('presentations', source.title);
         },
       },
     };

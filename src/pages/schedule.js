@@ -46,6 +46,7 @@ const formatTime = dateTime => format(new Date(dateTime), 'hh:mm A');
 
 export default function Schedule({ data, ...rest }) {
   const { presentations } = data;
+  console.log(presentations);
   return (
     <Layout {...rest}>
       <Container>
@@ -57,10 +58,14 @@ export default function Schedule({ data, ...rest }) {
                 {formatTime(presentation.time)} -{' '}
                 {formatTime(getEndDate(presentation.time))}
               </Time>
-              <Link to={presentation.speaker.slug}>
-                <Title>{presentation.title}</Title>
-                <Image fixed={presentation.speaker.avatar.fixed} />
-              </Link>
+              <React.Fragment>
+                <Link to={presentation.slug}><Title>{presentation.title}</Title></Link>
+              </React.Fragment>
+              {(presentation.speaker || []).map(speaker => (
+                <Link to={speaker.slug} key={speaker.id}>
+                  <Image fixed={speaker.avatar.fixed} />
+                </Link>
+              ))}
             </Presentation>
           ))}
         </Content>
@@ -79,6 +84,7 @@ export const pageQuery = graphql`
           id
           title
           time
+          slug
           speaker {
             id
             avatar {

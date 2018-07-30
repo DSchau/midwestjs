@@ -56,7 +56,7 @@ export const pageQuery = graphql`
   query SpeakersPageQuery {
     featured: allContentfulSpeaker(
       filter: { featured: { eq: true } }
-      sort: { fields: [featured, name], order: ASC }
+      sort: { fields: [featured, name], order: DESC }
     ) {
       edges {
         node {
@@ -67,7 +67,7 @@ export const pageQuery = graphql`
 
     speakers: allContentfulSpeaker(
       filter: { featured: { ne: true } }
-      sort: { fields: [featured, name], order: ASC }
+      sort: { fields: [featured, name], order: DESC }
     ) {
       edges {
         node {
