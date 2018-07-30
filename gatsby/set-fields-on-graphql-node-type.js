@@ -3,35 +3,22 @@ const slugify = require('limax');
 
 const getSlug = (part, name) => `/${part}/${slugify(name)}`;
 
-module.exports = ({ type }) => {
-  if (type.name === 'ContentfulSpeaker') {
-    return {
-      slug: {
-        type: GraphQLString,
-        resolve(source, fieldArgs) {
-          return getSlug('speakers', source.name);
-        },
-      },
-    };
-  } else if (type.name === 'ContentfulPresentation') {
-    return {
-      slug: {
-        type: GraphQLString,
-        resolve(source, fieldArgs) {
-          return getSlug('presentations', source.title);
-        },
-      },
-    };
-  } else if (type.name === 'ContentfulSponsor') {
-    return {
-      slug: {
-        type: GraphQLString,
-        resolve(source, fieldArgs) {
-          return getSlug('sponsors', source.name);
-        },
-      },
-    };
-  }
+const getResolver = resolver => ({
+  slug: {
+    type: GraphQLString,
+    resolve: resolver,
+  },
+});
 
-  return {};
+module.exports = ({ type }) => {
+  switch (type.name) {
+    case 'ContentfulSpeaker':
+      return getResolver(source => getSlug('speakers', source.name));
+    case 'ContentfulPresentation':
+      return getResolver(source => getSlug('presentations', source.title));
+    case 'ContentfulSponsor':
+      return getResolver(source => getSlug('sponsors', source.name));
+    default:
+      return {};
+  }
 };

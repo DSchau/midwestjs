@@ -62,9 +62,12 @@ A.defaultProps = {
 
 const Image = styled(GatsbyImage)();
 const Link = styled(GatsbyLink)({
-  textDecoration: 'none',
+  display: 'block',
   color: 'inherit',
+  textDecorationSkip: 'ink',
+  width: '100%',
 });
+
 export default function Speaker({
   id,
   children,

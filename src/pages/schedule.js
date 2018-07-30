@@ -47,6 +47,7 @@ const Title = styled.h2({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  color: '#444',
   fontSize: 12,
   maxWidth: 200,
   ...DIMENSIONS.greaterThan('medium')({
@@ -67,7 +68,6 @@ const Time = styled.h2({
   margin: 0,
   padding: 0,
   fontWeight: 400,
-  color: '#444',
   paddingRight: '1rem',
   whiteSpace: 'nowrap',
   fontSize: 12,
@@ -85,7 +85,6 @@ const Spacer = styled(Time)({
 
 const Link = styled(GatsbyLink)({
   color: 'inherit',
-  textDecoration: 'none',
 });
 
 const Images = styled.div({
@@ -95,8 +94,12 @@ const Images = styled.div({
   }),
 });
 
-const Image = styled(GatsbyImage)({
+const SpeakerImage = styled(GatsbyImage)({
   marginLeft: '0.5rem',
+  transition: '175ms ease-in-out',
+  ':hover': {
+    transform: 'scale(1.1)',
+  },
 });
 
 export default function Schedule({ data, ...rest }) {
@@ -147,7 +150,7 @@ export default function Schedule({ data, ...rest }) {
                     <Images>
                       {(presentation.speaker || []).map(speaker => (
                         <Link to={speaker.slug} key={speaker.id}>
-                          <Image fixed={speaker.avatar.fixed} />
+                          <SpeakerImage fixed={speaker.avatar.fixed} />
                         </Link>
                       ))}
                     </Images>
