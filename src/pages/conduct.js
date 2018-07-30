@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import styled from 'react-emotion';
 
 import Layout from '../components/layout';
-import PageTitle from '../components/page-title';
+import Subheader from '../components/sub-header';
 
 const Container = styled.div({
   display: 'flex',
@@ -21,7 +21,7 @@ export default function Conduct({ data }) {
   return (
     <Layout>
       <Container>
-        <PageTitle>{conduct.name}</PageTitle>
+        <Subheader title={conduct.name} />
         <Content
           dangerouslySetInnerHTML={{
             __html: conduct.content.childMarkdownRemark.html,

@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import styled from 'react-emotion';
 
 import Layout from '../components/layout';
-import PageTitle from '../components/page-title';
+import Subheader from '../components/sub-header';
 
 const Container = styled.div({
   display: 'flex',
@@ -15,7 +15,7 @@ export default function Venue({ data }) {
   return (
     <Layout>
       <Container>
-        <PageTitle>Venue</PageTitle>
+        <Subheader title="Venue" />
       </Container>
     </Layout>
   );

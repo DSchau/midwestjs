@@ -38,7 +38,16 @@ const Link = styled(GatsbyLink)({
   color: 'black',
   fontSize: 18,
   textDecorationSkip: 'ink',
+  transition: '175ms ease-in-out',
+  ':hover, &.active': {
+    textDecoration: 'none',
+  },
 });
+
+Link.defaultProps = {
+  activeClassName: 'active',
+  exact: true,
+};
 
 export default function FooterComponent() {
   return (

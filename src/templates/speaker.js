@@ -4,23 +4,11 @@ import styled from 'react-emotion';
 import Image from 'gatsby-image';
 
 import Layout from '../components/layout';
+import Subheader from '../components/sub-header';
 
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
-});
-
-const Header = styled.header({
-  padding: '2.5rem 0.5rem',
-  backgroundColor: '#222',
-});
-
-const Name = styled.h1({
-  fontSize: 96,
-  margin: 0,
-  padding: 0,
-  color: 'white',
-  textAlign: 'center',
 });
 
 const Content = styled.div({
@@ -44,9 +32,7 @@ export default function Speaker({ data }) {
   return (
     <Layout>
       <Container>
-        <Header>
-          <Name>{speaker.name}</Name>
-        </Header>
+        <Subheader title={speaker.name} />
         <Content>
           <Avatar sizes={speaker.avatar.sizes} />
           <Bio dangerouslySetInnerHTML={{ __html: speaker.bio.bio }} />

@@ -10,25 +10,19 @@ const Container = styled.div({
   flexDirection: 'column',
 });
 
-export default function IndexPage({ data }) {
-  const { hero, speakers } = data;
+export default function Attend({ data }) {
+  const { speakers } = data;
   return (
     <Layout>
-      <Subheader image={hero.image.fluid} title="Midwest JS 2018" />
-      <Container />
+      <Container>
+        <Subheader title="Attend" />
+      </Container>
     </Layout>
   );
 }
 
 export const pageQuery = graphql`
-  query IndexPageQuery {
-    hero: contentfulImage(name: { eq: "Hero" }) {
-      image {
-        fluid(maxWidth: 1000) {
-          ...GatsbyContentfulFluid_withWebp
-        }
-      }
-    }
+  query AttendPageQuery {
     speakers: allContentfulSpeaker {
       edges {
         node {

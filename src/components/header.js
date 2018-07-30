@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { Link as GatsbyLink, StaticQuery, graphql } from 'gatsby';
+import GatsbyImage from 'gatsby-image';
 
 const Header = styled.header({
   backgroundColor: '#222',
   padding: '1rem',
 });
 
-const Image = styled.img({
+const Image = styled(GatsbyImage)({
   filter: 'grayscale(1)',
   transition: '175ms ease-in-out',
   marginRight: '2rem',
@@ -40,11 +41,28 @@ const NavigationItem = styled.li({
   textTransform: 'uppercase',
 });
 
-const Link = styled(GatsbyLink)({
+const IndexLink = styled(GatsbyLink)({
+  textDecoration: 'none',
+});
+
+const Link = styled(IndexLink)({
   color: 'white',
   padding: '0.5rem',
   textDecoration: 'none',
+  borderBottom: '2px solid transparent',
+  transition: '175ms ease-in-out',
+  ':hover': {
+    borderBottomColor: '#999',
+  },
+  '&.active': {
+    borderBottomColor: '#eee',
+  },
 });
+
+Link.defaultProps = {
+  activeClassName: 'active',
+  exact: true,
+};
 
 const AttendLink = styled(GatsbyLink)({
   backgroundColor: '#ffd503',
@@ -74,10 +92,10 @@ export default function HeaderComponent() {
             }
           }
 
-          logo: file(relativePath: { eq: "logo.png" }) {
-            transformed: childImageSharp {
+          logo: contentfulImage(name: { eq: "Logo" }) {
+            image {
               fixed(height: 48, width: 48) {
-                src
+                ...GatsbyContentfulFixed
               }
             }
           }
@@ -86,9 +104,9 @@ export default function HeaderComponent() {
       render={data => (
         <Header>
           <Navigation>
-            <Link to="/">
-              <Image src={data.logo.transformed.fixed.src} />
-            </Link>
+            <IndexLink to="/">
+              <Image fixed={data.logo.image.fixed} />
+            </IndexLink>
             <NavigationList>
               {data.site.siteMetadata.navigationItems.map(({ href, label }) => (
                 <NavigationItem key={href}>
