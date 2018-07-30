@@ -13,7 +13,7 @@ const Image = styled(GatsbyImage)({
   transition: '175ms ease-in-out',
   marginRight: '2rem',
   marginBottom: 0,
-  ':hover': {
+  ':hover, .active &': {
     filter: 'grayscale(0)',
   },
 });
@@ -44,6 +44,11 @@ const NavigationItem = styled.li({
 const IndexLink = styled(GatsbyLink)({
   textDecoration: 'none',
 });
+
+IndexLink.defaultProps = {
+  activeClassName: 'active',
+  exact: true,
+};
 
 const Link = styled(IndexLink)({
   color: 'white',
