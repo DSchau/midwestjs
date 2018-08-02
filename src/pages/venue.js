@@ -59,9 +59,10 @@ export default function Venue({ data, ...rest }) {
           <Title>University of St Thomas - Schulze Hall</Title>
           <Paragraph>
             <Link href="https://www.stthomas.edu/business/visitors/campuses/">
-              46 11th Street South, Minneapolis, MN 55403
+              Schulz Hall
             </Link>
           </Paragraph>
+          <Paragraph>46 11th Street South, Minneapolis, MN 55403</Paragraph>
           <Image fluid={venue.image.fluid} />
           <LocationMap
             coordinates={{ latitude: 44.974167, longitude: -93.2777274 }}
