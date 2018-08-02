@@ -65,6 +65,7 @@ const NavigationItem = styled.li({
   margin: '0 0.25rem',
   padding: 0,
   textTransform: 'uppercase',
+  whiteSpace: 'nowrap',
   fontSize: 14,
   ...DIMENSIONS.greaterThan('medium')({
     fontSize: 16,
