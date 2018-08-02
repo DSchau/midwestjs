@@ -81,6 +81,7 @@ export default function Speaker({
   link,
   social,
   featured,
+  showBio,
 }) {
   const Wrapper = link ? Link : React.Fragment;
   return (
@@ -127,13 +128,15 @@ export default function Speaker({
             </Social>
           )}
         </Details>
-        <Bio
-          dangerouslySetInnerHTML={{
-            __html: featured
-              ? bio.childMarkdownRemark.html
-              : bio.childMarkdownRemark.excerpt,
-          }}
-        />
+        {showBio && (
+          <Bio
+            dangerouslySetInnerHTML={{
+              __html: featured
+                ? bio.childMarkdownRemark.html
+                : bio.childMarkdownRemark.excerpt,
+            }}
+          />
+        )}
       </Container>
       {children}
     </Root>
@@ -141,6 +144,7 @@ export default function Speaker({
 }
 
 Speaker.defaultProps = {
+  showBio: true,
   link: true,
 };
 

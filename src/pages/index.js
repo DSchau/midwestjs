@@ -4,10 +4,11 @@ import styled from 'react-emotion';
 import GatsbyImage from 'gatsby-image';
 
 import Layout from '../components/layout';
+import Speaker from '../components/speaker';
 
 import { DIMENSIONS } from '../util/dimensions';
 
-const Container = styled.div({
+const Container = styled.main({
   display: 'flex',
   flexDirection: 'column',
 });
@@ -95,8 +96,65 @@ const CallToAction = styled(GatsbyLink)({
   }),
 });
 
+const Subtitle = styled.h2({
+  margin: '1rem 0',
+  padding: '1rem 0',
+  textAlign: 'center',
+  textTransform: 'uppercase',
+  fontSize: 32,
+  border: '4px solid #ffd503',
+  borderLeftWidth: 0,
+  borderRightWidth: 0,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 40,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 48,
+  }),
+});
+
+const Section = styled.section({});
+
+const Content = styled.div({
+  maxWidth: 900,
+  margin: '1rem auto',
+  padding: '1rem',
+  textAlign: 'center',
+});
+
+const SectionLink = styled(CallToAction)({
+  display: 'inline-block',
+  backgroundColor: '#222',
+  color: 'white',
+  padding: '0.5rem 1rem',
+  margin: '1rem 0',
+  ':hover': {
+    borderColor: '#222',
+    backgroundColor: 'transparent',
+    color: '#222',
+  },
+  fontSize: 14,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 16,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 20,
+  }),
+});
+
+const Grid = styled.div({
+  display: 'grid',
+  gridTemplateColumns: '100%',
+  ...DIMENSIONS.greaterThan('medium')({
+    gridTemplateColumns: '50% 50%',
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    gridTemplateColumns: '33% 33% 33%',
+  }),
+});
+
 export default function IndexPage({ data, ...rest }) {
-  const { hero, speakers } = data;
+  const { hero, featured, speakers } = data;
   return (
     <Layout title="2018" {...rest}>
       <Container>
@@ -109,6 +167,25 @@ export default function IndexPage({ data, ...rest }) {
             <CallToAction to="/attend">Buy your tickets</CallToAction>
           </Details>
         </Hero>
+        <Section id="speakers">
+          <Content>
+            <Subtitle>Speakers</Subtitle>
+            {featured.edges.map(({ node: speaker }) => (
+              <Speaker
+                key={speaker.id}
+                featured={true}
+                showBio={false}
+                {...speaker}
+              />
+            ))}
+            <Grid>
+              {speakers.edges.map(({ node: speaker }) => (
+                <Speaker key={speaker.id} showBio={false} {...speaker} />
+              ))}
+            </Grid>
+            <SectionLink to="/speakers">View all speakers</SectionLink>
+          </Content>
+        </Section>
       </Container>
     </Layout>
   );
@@ -123,17 +200,25 @@ export const pageQuery = graphql`
         }
       }
     }
-    speakers: allContentfulSpeaker {
+
+    featured: allContentfulSpeaker(
+      filter: { featured: { eq: true } }
+      sort: { fields: [name], order: ASC }
+    ) {
       edges {
         node {
-          id
-          name
-          company
-          bio {
-            bio
-          }
-          twitter
-          github
+          ...Speaker
+        }
+      }
+    }
+
+    speakers: allContentfulSpeaker(
+      filter: { featured: { ne: true } }
+      limit: 6
+    ) {
+      edges {
+        node {
+          ...Speaker
         }
       }
     }
