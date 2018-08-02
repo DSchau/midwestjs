@@ -177,14 +177,14 @@ export default function IndexPage({ data, ...rest }) {
             <Title>Midwest JS 2018</Title>
             <Dates>August 8th - 10th</Dates>
             <Location>Minneapolis, MN</Location>
-            <CallToAction to="/attend">Buy your tickets</CallToAction>
+            <CallToAction to="/attend">Buy tickets</CallToAction>
           </Details>
         </Hero>
         <Section id="about">
           <Content>
             <Subtitle>We're back!</Subtitle>
             <Paragraph>{description.content}</Paragraph>
-            <SectionLink to="/attend">Get your ticket</SectionLink>
+            <SectionLink to="/attend">Buy tickets</SectionLink>
           </Content>
         </Section>
         <Section id="speakers">

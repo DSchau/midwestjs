@@ -66,6 +66,9 @@ export default function FooterComponent() {
                 <Link to={href}>{label}</Link>
               </ListItem>
             ))}
+            <ListItem>
+              <Link to="/attend">Buy tickets</Link>
+            </ListItem>
           </List>
           <Copyright>
             Copyright &copy; Midwest JS {new Date().getFullYear()}
