@@ -15,10 +15,6 @@ module.exports = {
         label: 'Speakers',
       },
       {
-        href: '/venue',
-        label: 'Venue',
-      },
-      {
         href: '/sponsors',
         label: 'Sponsors',
       },
