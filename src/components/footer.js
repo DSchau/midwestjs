@@ -12,20 +12,14 @@ const List = styled.ul({
   display: 'block',
   padding: 0,
   margin: 0,
+  textAlign: 'center',
 });
 
 const ListItem = styled.li({
-  display: 'block',
+  display: 'inline-block',
   padding: 0,
-  margin: '1rem 0',
+  margin: '1rem',
   listStyleType: 'none',
-});
-
-const Title = styled.h2({
-  color: 'black',
-  margin: 0,
-  marginBottom: '1rem',
-  textTransform: 'uppercase',
 });
 
 const Copyright = styled.p({
@@ -66,7 +60,6 @@ export default function FooterComponent() {
       `}
       render={data => (
         <Footer>
-          <Title>Event details</Title>
           <List>
             {data.site.siteMetadata.navigationItems.map(({ href, label }) => (
               <ListItem key={href}>

@@ -29,17 +29,25 @@ const EventMessage = styled.p({
 const Image = styled(GatsbyImage)({
   filter: 'grayscale(1)',
   transition: '175ms ease-in-out',
-  marginRight: '2rem',
   marginBottom: 0,
   ':hover, .active &': {
     filter: 'grayscale(0)',
   },
+  height: '32px !important',
+  width: '32px !important',
+  marginRight: '0.25rem',
+  ...DIMENSIONS.greaterThan('medium')({
+    height: '48px !important',
+    width: '48px !important',
+    marginRight: '2rem',
+  }),
 });
 
 const Navigation = styled.nav({
   display: 'flex',
   alignItems: 'center',
   padding: '1rem',
+  overflowX: 'scroll',
 });
 
 const NavigationList = styled.ul({
@@ -52,12 +60,18 @@ const NavigationList = styled.ul({
 
 const NavigationItem = styled.li({
   color: 'white',
-  fontSize: 18,
   fontWeight: 'bold',
   listStyleType: 'none',
-  marginBottom: 0,
+  margin: '0 0.25rem',
   padding: 0,
   textTransform: 'uppercase',
+  fontSize: 14,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 16,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 18,
+  }),
 });
 
 const IndexLink = styled(GatsbyLink)({
@@ -90,7 +104,7 @@ Link.defaultProps = {
 const AttendLink = styled(GatsbyLink)({
   backgroundColor: '#ffd503',
   color: '#222',
-  padding: '0.5rem 1.5rem',
+  padding: '0.25rem 0.5rem',
   border: '2px solid transparent',
   transition: '175ms ease-in-out',
   textDecoration: 'none',
@@ -99,6 +113,9 @@ const AttendLink = styled(GatsbyLink)({
     backgroundColor: 'transparent',
     color: '#ffd503',
   },
+  ...DIMENSIONS.greaterThan('medium')({
+    padding: '0.5rem 1.5rem',
+  }),
 });
 
 export default function HeaderComponent({ location }) {

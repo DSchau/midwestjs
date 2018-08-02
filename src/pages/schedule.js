@@ -18,6 +18,7 @@ const Content = styled.div({
   maxWidth: 900,
   margin: '1rem auto',
   padding: '1rem',
+  overflow: 'hidden',
 });
 
 const Presentation = styled.div({
@@ -131,9 +132,39 @@ export default function Schedule({ data, ...rest }) {
                   <PresentationDate>{presentation.day}</PresentationDate>
                 )}
                 <Presentation>
-                  <TimeWrapper>{`${presentation.start} - ${
-                    presentation.end
-                  }`}</TimeWrapper>
+                  <TimeWrapper>
+                    <span
+                      css={{
+                        display: 'block',
+                        ...DIMENSIONS.greaterThan('medium')({
+                          display: 'inline-block',
+                        }),
+                      }}
+                    >
+                      {presentation.start}
+                    </span>
+                    <span
+                      css={{
+                        display: 'none',
+                        ...DIMENSIONS.greaterThan('medium')({
+                          display: 'inline-block',
+                          padding: '0 0.5rem',
+                        }),
+                      }}
+                    >
+                      -
+                    </span>
+                    <span
+                      css={{
+                        display: 'block',
+                        ...DIMENSIONS.greaterThan('medium')({
+                          display: 'inline-block',
+                        }),
+                      }}
+                    >
+                      {presentation.end}
+                    </span>
+                  </TimeWrapper>
                   <div
                     css={{
                       display: 'flex',
