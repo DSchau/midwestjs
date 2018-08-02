@@ -117,9 +117,22 @@ const Section = styled.section({});
 
 const Content = styled.div({
   maxWidth: 900,
-  margin: '1rem auto',
+  margin: '0 auto',
   padding: '1rem',
   textAlign: 'center',
+});
+
+const Paragraph = styled.p({
+  margin: 0,
+  padding: 0,
+  lineHeight: 1.5,
+  fontSize: 18,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 20,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 24,
+  }),
 });
 
 const SectionLink = styled(CallToAction)({
@@ -154,7 +167,7 @@ const Grid = styled.div({
 });
 
 export default function IndexPage({ data, ...rest }) {
-  const { hero, featured, speakers } = data;
+  const { hero, description, featured, speakers } = data;
   return (
     <Layout title="2018" {...rest}>
       <Container>
@@ -167,6 +180,13 @@ export default function IndexPage({ data, ...rest }) {
             <CallToAction to="/attend">Buy your tickets</CallToAction>
           </Details>
         </Hero>
+        <Section id="about">
+          <Content>
+            <Subtitle>We're back!</Subtitle>
+            <Paragraph>{description.content}</Paragraph>
+            <SectionLink to="/attend">Get your ticket</SectionLink>
+          </Content>
+        </Section>
         <Section id="speakers">
           <Content>
             <Subtitle>Speakers</Subtitle>
@@ -199,6 +219,10 @@ export const pageQuery = graphql`
           ...GatsbyContentfulFluid_withWebp
         }
       }
+    }
+
+    description: contentfulMetaTag(name: { eq: "description" }) {
+      content
     }
 
     featured: allContentfulSpeaker(

@@ -48,6 +48,7 @@ const Navigation = styled.nav({
   alignItems: 'center',
   padding: '1rem',
   overflowX: 'scroll',
+  WebkitOverflowScrolling: 'touch',
 });
 
 const NavigationList = styled.ul({
