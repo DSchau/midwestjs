@@ -49,6 +49,10 @@ const Link = styled(GatsbyLink)({
   textDecoration: 'none',
 });
 
+const GetInTouch = styled(GatsbyLink)({
+  color: 'inherit',
+});
+
 /*
  * TODO: get images looking nicer
  */
@@ -77,6 +81,24 @@ export default function Sponsors({ data, ...rest }) {
                 </Link>
               </Sponsor>
             ))}
+            <Sponsor
+              css={{
+                backgroundColor: '#222',
+                color: 'white',
+                borderRadius: 500,
+                margin: '2rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+              }}
+            >
+              <GetInTouch to="/contact">
+                <h3 css={{ fontSize: 40, margin: 0 }}>You?</h3>
+                <h4 css={{ fontSize: 24, margin: 0 }}>Get in touch.</h4>
+              </GetInTouch>
+            </Sponsor>
           </Grid>
         </Content>
       </Container>
