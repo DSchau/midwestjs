@@ -112,6 +112,7 @@ export default function Contact({ data, ...rest }) {
       <Section id="twitter">
         <Title>Twitter</Title>
         <Link href="https://twitter.com/midwest_js">Follow us</Link>
+        <Paragraph>See what people are saying about MidwestJS</Paragraph>
         <Grid>
           {tweets.edges.map(({ node: tweet }) => (
             <Tweet key={tweet.id_str} {...tweet} />

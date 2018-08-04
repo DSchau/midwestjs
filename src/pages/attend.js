@@ -71,6 +71,13 @@ const Paragraph = styled.p({
   margin: 0,
   padding: 0,
   lineHeight: 1.5,
+  fontSize: 18,
+  ...DIMENSIONS.greaterThan('medium')({
+    fontSize: 20,
+  }),
+  ...DIMENSIONS.greaterThan('large')({
+    fontSize: 24,
+  }),
 });
 
 const Link = styled.a({
