@@ -5008,6 +5008,14 @@ gatsby-plugin-emotion@~2.0.0-beta.3:
   dependencies:
     "@babel/runtime" "7.0.0-beta.52"
 
+gatsby-plugin-manifest@~2.0.2-beta.3:
+  version "2.0.2-beta.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.0.2-beta.3.tgz#6f8bbaa2961f967d7eff98b73e857dd5da871979"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.52"
+    bluebird "^3.5.0"
+    sharp "^0.20.2"
+
 gatsby-plugin-offline@~2.0.0-beta.6:
   version "2.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-offline/-/gatsby-plugin-offline-2.0.0-beta.6.tgz#187ee484dec5699b1244dfa656d2af5c0ddfd551"

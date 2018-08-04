@@ -40,6 +40,18 @@ module.exports = {
         omitGoogleFont: true,
       },
     },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Midwest JS',
+        short_name: 'MidwestJS',
+        start_url: '/',
+        background_color: '#222',
+        theme_color: '#ffd503',
+        display: 'minimal-ui',
+        icon: 'content/images/logo.png',
+      },
+    },
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
