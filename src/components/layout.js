@@ -54,7 +54,9 @@ export default function Layout({ children, location, meta, title }) {
             )}
             title={title}
             titleTemplate={`${data.site.siteMetadata.title} | %s`}
-          />
+          >
+            <html lang="en" />
+          </Helmet>
           <Header location={location} />
           {children}
           <Footer />
