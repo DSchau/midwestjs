@@ -1,26 +1,21 @@
-# gatsby-starter-default
-The default Gatsby starter.
+# midwestjs
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+[![Hosted Version](./demo/demo.jpg)](https://midwestjs.netlify.com)
 
-## Install
+A Gatsby-generated variant of [midwestjs][midwestjs], currently hosted using [Netlify][netlify]
 
-Make sure that you have the Gatsby CLI program installed:
-```sh
-npm install --global gatsby-cli
-```
+## Content
 
-And run from your CLI:
-```sh
-gatsby new gatsby-example-site
-```
+All content is hosted and created using [Contentful][contentful], and then queried and injected using [gatsby-source-contentful][gatsby-source-contentful]. All content on the side, including images, speakers, presentations, etc. are driven and derived from this Contentful content base.
 
-Then you can run it by:
-```sh
-cd gatsby-example-site
-gatsby develop
-```
+## Gatsby
 
-## Deploy
+Gatsby, a static site generator for React, is used as the engine powering the static site generation and data/content injection layer. Particularly noteworthy files/techniques can be found in the following files:
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+- [Querying contentful nodes](./src/pages/index.js#L214-250)
+- [Querying Twitter for recent tweets](./src/pages/contact.js#L125-135)
+
+[midwestjs]: https://midwestjs.com
+[netlify]: https://netlify.com
+[contentful]: https://contentful.com
+[gatsby-source-contentful]: https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-source-contentful
