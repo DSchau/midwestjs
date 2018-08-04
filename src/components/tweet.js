@@ -12,6 +12,7 @@ const Container = styled.div({
 const Image = styled.img({
   alignSelf: 'flex-start',
   marginRight: '1rem',
+  minWidth: 48,
   borderRadius: 100,
 });
 
