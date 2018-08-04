@@ -6,8 +6,6 @@ import GatsbyImage from 'gatsby-image';
 import Layout from '../components/layout';
 import Subheader from '../components/sub-header';
 
-import { DIMENSIONS } from '../util/dimensions';
-
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',

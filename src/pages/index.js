@@ -216,7 +216,7 @@ export const pageQuery = graphql`
     hero: contentfulImage(name: { eq: "Hero" }) {
       image {
         fluid(maxWidth: 1000) {
-          ...GatsbyContentfulFluid_withWebp
+          ...GatsbyContentfulFluid_tracedSVG
         }
       }
     }

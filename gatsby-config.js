@@ -32,11 +32,24 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
         pathToConfigModule: 'src/util/typography',
         omitGoogleFont: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Midwest JS',
+        short_name: 'MidwestJS',
+        start_url: '/',
+        background_color: '#222',
+        theme_color: '#ffd503',
+        display: 'minimal-ui',
+        icon: 'content/images/logo.png',
       },
     },
     'gatsby-transformer-sharp',
