@@ -54,7 +54,7 @@ export const tweetFragment = graphql`
     user {
       name
       screen_name
-      profile_image_url_https
+      profile_image_url: profile_image_url_https
     }
   }
 `;
