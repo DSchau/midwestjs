@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link as GatsbyLink, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import styled from 'react-emotion';
-import GatsbyImage from 'gatsby-image';
 
 import Layout from '../components/layout';
 import Subheader from '../components/sub-header';
