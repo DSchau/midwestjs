@@ -32,7 +32,7 @@ const Name = styled.h2({
 
 const Company = styled.h3({
   margin: 0,
-  color: '#999',
+  color: '#666',
 });
 
 const Bio = styled.div({
