@@ -32,6 +32,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-offline',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
