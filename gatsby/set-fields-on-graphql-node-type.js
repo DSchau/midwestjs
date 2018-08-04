@@ -10,6 +10,10 @@ const getResolver = resolver => ({
   },
 });
 
+/*
+ * This function adds a slug to each Contentful content type
+ * this lets us cleanly and consistently link to content types
+ */
 module.exports = ({ type }) => {
   switch (type.name) {
     case 'ContentfulSpeaker':

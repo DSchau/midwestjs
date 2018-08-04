@@ -55,11 +55,27 @@ export default function LocationMap({ coordinates, googleMapsUrl }) {
           </a>
           <Attribution>
             &copy;
-            <a href="https://www.mapbox.com/about/maps/">Mapbox </a>
+            <a
+              href="https://www.mapbox.com/about/maps/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mapbox{' '}
+            </a>
             &copy;
-            <a href="http://www.openstreetmap.org/copyright">OpenStreetMap </a>
+            <a
+              href="http://www.openstreetmap.org/copyright"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              OpenStreetMap{' '}
+            </a>
             <strong>
-              <a href="https://www.mapbox.com/map-feedback/" target="_blank">
+              <a
+                href="https://www.mapbox.com/map-feedback/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Improve this map
               </a>
             </strong>

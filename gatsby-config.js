@@ -22,6 +22,10 @@ module.exports = {
         href: '/conduct',
         label: 'Conduct',
       },
+      {
+        href: '/contact',
+        label: 'Contact Us',
+      },
     ],
   },
   plugins: [
@@ -50,8 +54,20 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: process.env.SPACE_ID,
-        accessToken: process.env.ACCESS_TOKEN,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    {
+      resolve: 'gatsby-source-twitter',
+      options: {
+        q: `@Midwest_JS`,
+        credentials: {
+          consumer_key: process.env.TWITTER_CONSUMER_KEY,
+          consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+          bearer_token: process.env.TWITTER_BEARER_TOKEN,
+        },
+        tweet_mode: 'extended',
       },
     },
   ],

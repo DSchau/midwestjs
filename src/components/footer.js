@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'react-emotion';
 import { Link as GatsbyLink, StaticQuery, graphql } from 'gatsby';
 
+import { DIMENSIONS } from '../util/dimensions';
+
 const Footer = styled.footer({
   backgroundColor: '#ffd503',
   padding: '2rem 1rem',
@@ -18,8 +20,11 @@ const List = styled.ul({
 const ListItem = styled.li({
   display: 'inline-block',
   padding: 0,
-  margin: '1rem',
   listStyleType: 'none',
+  margin: '0.5rem',
+  ...DIMENSIONS.greaterThan('large')({
+    margin: '1rem',
+  }),
 });
 
 const Copyright = styled.p({
