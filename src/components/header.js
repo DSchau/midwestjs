@@ -48,7 +48,6 @@ const Navigation = styled.nav({
   alignItems: 'center',
   padding: '1rem',
   overflowX: 'scroll',
-  WebkitOverflowScrolling: 'touch',
   position: 'relative',
   background: `
     linear-gradient(90deg, rgb(34, 34, 34) 30%, rgba(34, 34, 34, 0)),
