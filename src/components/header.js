@@ -48,7 +48,19 @@ const Navigation = styled.nav({
   alignItems: 'center',
   padding: '1rem',
   overflowX: 'scroll',
-  WebkitOverflowScrolling: 'touch',
+  position: 'relative',
+  background: `
+    linear-gradient(90deg, rgb(34, 34, 34) 30%, rgba(34, 34, 34, 0)),
+    linear-gradient(90deg, rgba(34, 34, 34, 0), rgb(34, 34, 34) 70%),
+    
+    radial-gradient(farthest-side at 0 50%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0))
+  `,
+  backgroundColor: 'rgb(34, 34, 34)',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: '40px 100%, 40px 100%, 24px 100%, 24px 100%',
+  backgroundPosition: '0 0, 100% 0, 0 0, 100% 0',
+  backgroundAttachment: 'local, local, scroll, scroll',
 });
 
 const NavigationList = styled.ul({
