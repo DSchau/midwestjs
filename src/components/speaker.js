@@ -153,7 +153,7 @@ export const speakerFragment = graphql`
     id
     avatar {
       fixed(height: 250, width: 250) {
-        ...GatsbyContentfulFixed_withWebp
+        ...GatsbyContentfulFixed_tracedSVG
       }
     }
     name
