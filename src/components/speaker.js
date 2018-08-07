@@ -87,9 +87,11 @@ export default function Speaker({
   return (
     <Root>
       <Container key={id} featured={featured}>
-        <ImageContainer>
-          <Image fixed={avatar.fixed} />
-        </ImageContainer>
+        {avatar && (
+          <ImageContainer>
+            <Image fixed={avatar.fixed} />
+          </ImageContainer>
+        )}
         <Details>
           <Wrapper {...(link ? { to: slug } : {})}>
             <div>
