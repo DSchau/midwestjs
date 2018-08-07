@@ -5037,13 +5037,11 @@ gatsby-plugin-page-creator@^2.0.0-beta.5:
     parse-filepath "^1.0.1"
     slash "^1.0.0"
 
-gatsby-plugin-preact@~1.0.17:
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-1.0.17.tgz#d8234b8472a20cb994c135d90434283ad3cf5f3a"
+gatsby-plugin-preact@~2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-preact/-/gatsby-plugin-preact-2.0.0-beta.3.tgz#bb368cab6db4b15fb8346bf6406d7818b6d445bc"
   dependencies:
-    babel-runtime "^6.26.0"
-    preact "^8.2.5"
-    preact-compat "^3.17.0"
+    "@babel/runtime" "7.0.0-beta.52"
 
 gatsby-plugin-react-helmet@next:
   version "3.0.0-beta.4"
@@ -8882,7 +8880,7 @@ potrace@^2.1.1:
   dependencies:
     jimp "^0.2.24"
 
-preact-compat@^3.17.0, preact-compat@~3.18.2:
+preact-compat@~3.18.2:
   version "3.18.2"
   resolved "https://registry.yarnpkg.com/preact-compat/-/preact-compat-3.18.2.tgz#dfae12f0c12edcd371a01c33773c3525899f6747"
   dependencies:
@@ -8902,7 +8900,7 @@ preact-transition-group@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/preact-transition-group/-/preact-transition-group-1.1.1.tgz#f0a49327ea515ece34ea2be864c4a7d29e5d6e10"
 
-preact@^8.2.5, preact@~8.3.0:
+preact@~8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/preact/-/preact-8.3.0.tgz#eef16418bc351a44015b62c447722132ce5c36eb"
 
