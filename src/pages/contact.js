@@ -113,11 +113,15 @@ export default function Contact({ data, ...rest }) {
         <Title>Twitter</Title>
         <Link href="https://twitter.com/midwest_js">Follow us</Link>
         <Paragraph>See what people are saying about MidwestJS</Paragraph>
-        <Grid>
-          {tweets.edges.map(({ node: tweet }) => (
-            <Tweet key={tweet.id_str} {...tweet} />
-          ))}
-        </Grid>
+        {tweets ? (
+          <Grid>
+            {tweets.edges.map(({ node: tweet }) => (
+              <Tweet key={tweet.id_str} {...tweet} />
+            ))}
+          </Grid>
+        ) : (
+          <Paragraph css={{ margin: `1rem 0` }}>0 recent tweets</Paragraph>
+        )}
       </Section>
     </Layout>
   );
@@ -125,7 +129,7 @@ export default function Contact({ data, ...rest }) {
 
 export const pageQuery = graphql`
   query ContactPageQuery {
-    tweets: allTweet(limit: 6) {
+    tweets: allTweet(filter: { sample: { ne: true } }, limit: 6) {
       edges {
         node {
           ...TweetDetails
