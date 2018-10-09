@@ -181,7 +181,10 @@ export default function Schedule({ data, ...rest }) {
                     <Images>
                       {(presentation.speaker || []).map(speaker => (
                         <Link to={speaker.slug} key={speaker.id}>
-                          <SpeakerImage fixed={speaker.avatar.fixed} />
+                          {speaker &&
+                            speaker.avatar && (
+                              <SpeakerImage fixed={speaker.avatar.fixed} />
+                            )}
                         </Link>
                       ))}
                     </Images>
