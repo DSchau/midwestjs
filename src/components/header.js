@@ -88,6 +88,17 @@ const NavigationItem = styled.li({
   }),
 });
 
+const SecondaryLinks = styled.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+  margin: '0 auto',
+  ...DIMENSIONS.greaterThan('large')({
+    padding: '0 2.5rem',
+    width: '80%',
+  }),
+});
+
 const IndexLink = styled(GatsbyLink)({
   textDecoration: 'none',
 });
@@ -170,11 +181,15 @@ export default function HeaderComponent({ location }) {
               <Image fixed={data.logo.image.fixed} />
             </IndexLink>
             <NavigationList>
-              {data.site.siteMetadata.navigationItems.map(({ href, label }) => (
-                <NavigationItem key={href}>
-                  <Link to={href}>{label}</Link>
-                </NavigationItem>
-              ))}
+              <SecondaryLinks>
+                {data.site.siteMetadata.navigationItems.map(
+                  ({ href, label }) => (
+                    <NavigationItem key={href}>
+                      <Link to={href}>{label}</Link>
+                    </NavigationItem>
+                  )
+                )}
+              </SecondaryLinks>
               <NavigationItem>
                 <AttendLink to="/attend">Attend</AttendLink>
               </NavigationItem>
