@@ -1,10 +1,8 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import styled from 'react-emotion';
 
 import Layout from '../components/layout';
 import Subheader from '../components/sub-header';
-import Tweet from '../components/tweet';
 
 import { DIMENSIONS } from '../util/dimensions';
 
@@ -78,20 +76,9 @@ Link.defaultProps = {
   rel: 'noopener',
 };
 
-const Grid = styled.div({
-  display: 'grid',
-  gridTemplateColumns: '100%',
-  gridRowGap: '1rem',
-  gridColumnGap: '1rem',
-  ...DIMENSIONS.greaterThan('medium')({
-    gridTemplateColumns: '50% 50%',
-  }),
-});
-
-export default function Contact({ data, ...rest }) {
-  const { tweets } = data;
+export default function Contact(props) {
   return (
-    <Layout title="Contact Us" {...rest}>
+    <Layout title="Contact Us" {...props}>
       <Subheader title="Contact Us" />
       <Section id="email">
         <Title>Email</Title>
@@ -109,32 +96,6 @@ export default function Contact({ data, ...rest }) {
         </Paragraph>
         <Link href="https://midwestjs-slack.herokuapp.com/">Join us</Link>
       </Section>
-      <Section id="twitter">
-        <Title>Twitter</Title>
-        <Link href="https://twitter.com/midwest_js">Follow us</Link>
-        <Paragraph>See what people are saying about MidwestJS</Paragraph>
-        {tweets ? (
-          <Grid>
-            {tweets.edges.map(({ node: tweet }) => (
-              <Tweet key={tweet.id_str} {...tweet} />
-            ))}
-          </Grid>
-        ) : (
-          <Paragraph css={{ margin: `1rem 0` }}>0 recent tweets</Paragraph>
-        )}
-      </Section>
     </Layout>
   );
 }
-
-export const pageQuery = graphql`
-  query ContactPageQuery {
-    tweets: allTweet(filter: { sample: { ne: true } }, limit: 6) {
-      edges {
-        node {
-          ...TweetDetails
-        }
-      }
-    }
-  }
-`;

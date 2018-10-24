@@ -71,18 +71,5 @@ module.exports = {
         accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    {
-      resolve: 'gatsby-source-twitter',
-      options: {
-        q: `@Midwest_JS`, // note: had to change this to _get_ tweets
-        result_type: 'mixed',
-        credentials: {
-          consumer_key: process.env.TWITTER_CONSUMER_KEY,
-          consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-          bearer_token: process.env.TWITTER_BEARER_TOKEN,
-        },
-        tweet_mode: 'extended',
-      },
-    },
   ],
 };
