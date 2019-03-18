@@ -1,5 +1,4 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import styled from 'react-emotion';
 
 import Layout from '../components/layout';
@@ -88,8 +87,8 @@ const Grid = styled.div({
   }),
 });
 
-export default function Contact({ data, ...rest }) {
-  const { tweets } = data;
+export default function Contact({ data = {}, ...rest }) {
+  const { tweets = { edges: [] } } = data;
   return (
     <Layout title="Contact Us" {...rest}>
       <Subheader title="Contact Us" />
@@ -127,14 +126,14 @@ export default function Contact({ data, ...rest }) {
   );
 }
 
-export const pageQuery = graphql`
-  query ContactPageQuery {
-    tweets: allTweet(filter: { sample: { ne: true } }, limit: 6) {
-      edges {
-        node {
-          ...TweetDetails
-        }
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query ContactPageQuery {
+//     tweets: allTweet(filter: { sample: { ne: true } }, limit: 6) {
+//       edges {
+//         node {
+//           ...TweetDetails
+//         }
+//       }
+//     }
+//   }
+// `;

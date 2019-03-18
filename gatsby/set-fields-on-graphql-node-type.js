@@ -1,7 +1,12 @@
 const { GraphQLString } = require('gatsby/graphql');
 const slugify = require('limax');
 
-const getSlug = (part, name) => `/${part}/${slugify(name)}`;
+const getSlug = (part, name) => {
+  if (!name) {
+    return ``;
+  }
+  return `/${part}/${slugify(name)}`;
+};
 
 const getResolver = resolver => ({
   slug: {

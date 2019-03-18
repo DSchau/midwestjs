@@ -1,14 +1,13 @@
 const path = require('path');
-const slugify = require('limax');
 
-module.exports = function createPages({ actions, graphql }) {
+module.exports = async function createPages({ actions, graphql }) {
   const { createPage } = actions;
 
   const speakerTemplate = path.resolve('src/templates/speaker.js');
   const presentationTemplate = path.resolve('src/templates/presentation.js');
   const sponsorTemplate = path.resolve('src/templates/sponsor.js');
 
-  return graphql(`
+  const { data, errors } = await graphql(`
     {
       speakers: allContentfulSpeaker {
         edges {
@@ -34,27 +33,27 @@ module.exports = function createPages({ actions, graphql }) {
         }
       }
     }
-  `).then(result => {
-    if (result.errors) {
-      return Promise.reject(result.errors);
-    }
+  `);
 
-    const { speakers, presentations, sponsors } = result.data;
+  if (errors) {
+    throw errors;
+  }
 
-    const createPageGroup = (type, template) => {
-      type.edges.forEach(({ node }) => {
-        createPage({
-          component: template,
-          path: node.slug,
-          context: {
-            slug: node.slug,
-          },
-        });
+  const { speakers, presentations, sponsors } = data;
+
+  const createPageGroup = (type, template) => {
+    type.edges.forEach(({ node }) => {
+      createPage({
+        component: template,
+        path: node.slug,
+        context: {
+          slug: node.slug,
+        },
       });
-    };
+    });
+  };
 
-    createPageGroup(speakers, speakerTemplate);
-    createPageGroup(presentations, presentationTemplate);
-    createPageGroup(sponsors, sponsorTemplate);
-  });
+  createPageGroup(speakers, speakerTemplate);
+  createPageGroup(presentations, presentationTemplate);
+  createPageGroup(sponsors, sponsorTemplate);
 };

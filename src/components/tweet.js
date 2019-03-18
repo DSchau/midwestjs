@@ -45,17 +45,17 @@ export default function Tweet({ user, text }) {
   );
 }
 
-export const tweetFragment = graphql`
-  fragment TweetDetails on Tweet {
-    id_str
-    created_at
-    text: full_text
-    favorite_count
-    retweet_count
-    user {
-      name
-      screen_name
-      profile_image_url: profile_image_url_https
-    }
-  }
-`;
+// export const tweetFragment = graphql`
+//   fragment TweetDetails on Tweet {
+//     id_str
+//     created_at
+//     text: full_text
+//     favorite_count
+//     retweet_count
+//     user {
+//       name
+//       screen_name
+//       profile_image_url: profile_image_url_https
+//     }
+//   }
+// `;

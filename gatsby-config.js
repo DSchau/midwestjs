@@ -1,6 +1,8 @@
 const path = require('path');
 
-require('dotenv').config();
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -67,22 +69,23 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
+        host: process.GATSBY_CONTENTFUL_HOST || 'preview.contentful.com',
         spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
         accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    {
-      resolve: 'gatsby-source-twitter',
-      options: {
-        q: `@Midwest_JS`, // note: had to change this to _get_ tweets
-        result_type: 'mixed',
-        credentials: {
-          consumer_key: process.env.TWITTER_CONSUMER_KEY,
-          consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-          bearer_token: process.env.TWITTER_BEARER_TOKEN,
-        },
-        tweet_mode: 'extended',
-      },
-    },
+    // {
+    //   resolve: 'gatsby-source-twitter',
+    //   options: {
+    //     q: `@Midwest_JS`, // note: had to change this to _get_ tweets
+    //     result_type: 'mixed',
+    //     credentials: {
+    //       consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    //       consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    //       bearer_token: process.env.TWITTER_BEARER_TOKEN,
+    //     },
+    //     tweet_mode: 'extended',
+    //   },
+    // },
   ],
 };
